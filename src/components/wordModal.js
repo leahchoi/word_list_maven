@@ -3,15 +3,38 @@ import { Modal, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import axios from 'axios';
 
 class WordModal extends Component {
+    state = {
+        book: {}
+    }
+
+    componentDidMount () {
+        this.getItemData();
+    }
     
     getItemData = () => {
         axios.get("http://localhost:3000/books")
-            .then(resp => console.log(resp))
+            .then(resp => {
+                console.log("resp", resp);
+                this.setState({
+                    book: resp.data[0]
+                })
+            })
             .catch(err => console.log(err))
     }
 
+    renderWordInformation = () => {
+        if (this.state.book) {
+            return (
+                <View>
+                    <Text>{this.state.book.title}</Text>
+                    <Text>{this.state.book.author}</Text>
+                </View>
+            )
+        }
+    }
+
     render() {
-        this.getItemData();
+        console.log("Book State: ", this.state.book)
         return (
             <Modal
                 animationType="slide"
@@ -23,7 +46,7 @@ class WordModal extends Component {
             >
             <View
                 style={styles.modalContainer}>
-                <Text>Modal Text</Text>
+                {this.renderWordInformation()}
                 <TouchableOpacity onPress={() => this.props.closeModal()}>
                     <Text>Close Modal</Text>
                 </TouchableOpacity>
