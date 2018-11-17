@@ -178,12 +178,13 @@ const styles = StyleSheet.create({
         fontWeight: "700"
     },
     cardFooter: {
+        width: 360,
         flexDirection: "row",
         alignItems: "center",
-        paddingLeft: 15,
+        justifyContent:"space-around",
         paddingRight: 15,
         position: "absolute",
-        bottom: 0
+        bottom: 2
     },
     completeButton: {
         margin: "auto"
