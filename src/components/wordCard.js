@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, Image, ScrollView, StyleSheet, TouchableOpacity, Button } from 'react-native'
 
 class WordCard extends Component {
+
+    state = {
+        completed: false
+    }
+
+    onCompleteHandler = () => {
+        this.setState({
+            completed: !this.state.completed
+        })
+    }
 
     // renderCards = () => {
     //     if (this.props.wordList) {
@@ -89,6 +99,15 @@ class WordCard extends Component {
                         <Text>Definition: {definition}</Text>
                         <Text>Example: {example}</Text>
                     </View>
+                    <View style={styles.cardFooter}>
+                        <Text>Quiz Score: 8/10</Text>
+                        <Button 
+                            onPress={() => this.onCompleteHandler()}
+                            style={styles.completeButton}
+                            title={this.state.completed ? "Complete" : "Mark as Complete"}> 
+                        </Button>
+                        <Text>1 of 115</Text>
+                    </View>
                 </View>
             </View>
         )
@@ -157,6 +176,17 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 15,
         fontWeight: "700"
+    },
+    cardFooter: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingLeft: 15,
+        paddingRight: 15,
+        position: "absolute",
+        bottom: 0
+    },
+    completeButton: {
+        margin: "auto"
     }
 })
 
