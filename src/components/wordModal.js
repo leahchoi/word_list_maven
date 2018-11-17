@@ -25,19 +25,24 @@ class WordModal extends Component {
 
     renderWordInformation = () => {
         if (this.state.book) {
-            let books = this.state.book
-            console.log("Books: ", books)
-            const map = books.map((item) => {
-                return (
-                    <WordCard 
-                        book={item}
-                        title={item.title}
-                        author={item.author}/>
-                )
-            })
+            let book = this.state.book[0]
+            // render list of words in list
+            // console.log("Books: ", books)
+            // const map = books.map((item) => {
+            //     return (
+            //         <WordCard 
+            //             wordList={item.word_list}
+            //             title={item.title}
+            //             author={item.author}/>
+            //     )
+            // })
             return (
                 <View>
-                    {map}
+                    <WordCard 
+                        wordList={book.word_list[0]}
+                        title={book.title}
+                        author={book.author}
+                        closeModal={this.props.closeModal}/>
                 </View>
             )
         }
@@ -58,9 +63,6 @@ class WordModal extends Component {
                 <Text>Word Cards</Text>
             </View>
             {this.renderWordInformation()}
-            <TouchableOpacity onPress={() => this.props.closeModal()}>
-                <Text>Close Modal</Text>
-            </TouchableOpacity>
             </Modal>
         )
     }

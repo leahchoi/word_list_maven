@@ -3,73 +3,109 @@ import { Text, View, Image, ScrollView, StyleSheet, TouchableOpacity } from 'rea
 
 class WordCard extends Component {
 
-    renderCards = () => {
-        if (this.props.book) {
-            const card = this.props.book.word_list.map((word) => {
-                return (
-                    <View style={styles.cardContainer}>
-                        <View style={styles.cardHeader}>
-                            <View style={styles.arrowContainer}>
-                                <Text style={styles.arrow}>{"\<"}</Text>
-                            </View>
-                            <Image 
-                                style={{width: 75, height: 100, margin: 20}}
-                                source={{uri: "https://i.harperapps.com/covers/9780061244186/y648.jpg"}}/>
-                            <View style={styles.bookInfo}>
-                                <Text>{this.props.title}</Text>
-                                <Text>{this.props.author}</Text>
-                            </View>
-                            <View style={styles.arrowContainer}>
-                                <Text style={styles.arrow}>{"\>"}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.wordContainer}>
-                            <TouchableOpacity>
-                                <Text style={styles.soundButton}>Sound Button</Text>
-                            </TouchableOpacity>
-                            <View>
-                                <Text style={styles.word}>{word.word}</Text>
-                            </View>
-                            <View>
-                                <Text>{word.type} | {word.punctuation} </Text>
-                            </View>
-                        </View>
-                        <View style={styles.definition}>
-                            <Text>Definition: {word.definition}</Text>
-                            <Text>Example: {word.example}</Text>
-                        </View>
-                    </View>
-                )
-            })
-            return (
-                <View>
-                    {card}
-                </View>
-            )
-        }
-    }
+    // renderCards = () => {
+    //     if (this.props.wordList) {
+    //         const card = this.props.wordList.map((word) => {
+    //             return (
+    //                 <View style={styles.cardContainer}>
+    //                     <View style={styles.cardHeader}>
+    //                         <TouchableOpacity style={styles.arrowContainer}>
+    //                             <Text style={styles.arrow}>{"\<"}</Text>
+    //                         </TouchableOpacity>
+    //                         <Image 
+    //                             style={{width: 75, height: 100, margin: 20}}
+    //                             source={{uri: "https://i.harperapps.com/covers/9780061244186/y648.jpg"}}/>
+    //                         <View style={styles.bookInfo}>
+    //                             <Text style={styles.title}>{this.props.title}</Text>
+    //                             <Text>{this.props.author}</Text>
+    //                         </View>
+    //                         <TouchableOpacity style={styles.arrowContainer}>
+    //                             <Text style={styles.arrow}>{"\>"}</Text>
+    //                         </TouchableOpacity>
+    //                     </View>
+    //                     <View style={styles.wordContainer}>
+    //                         <TouchableOpacity>
+    //                             <Text style={styles.soundButton}>Sound Button</Text>
+    //                         </TouchableOpacity>
+    //                         <View>
+    //                             <Text style={styles.word}>{word.word}</Text>
+    //                         </View>
+    //                         <View>
+    //                             <Text>{word.type} | {word.punctuation} </Text>
+    //                         </View>
+    //                     </View>
+    //                     <View style={styles.definition}>
+    //                         <Text>Definition: {word.definition}</Text>
+    //                         <Text>Example: {word.example}</Text>
+    //                     </View>
+    //                 </View>
+    //             )
+    //         })
+    //         return (
+    //             <View style={styles.horizontalContainer}>
+    //                 {card}
+    //             </View>
+    //         )
+    //     }
+    // }
 
   render() {
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-                {this.renderCards()}
-            </ScrollView>
-        </View>
-    )
-  }
+        const { word, punctuation, definition, type, example } = this.props.wordList
+        return (
+            <View style={styles.container}>
+                <View style={styles.cardContainer}>
+                    <TouchableOpacity 
+                        style={styles.closeButtonContainer}
+                        onPress={() => this.props.closeModal()}>
+                        <Text style={styles.closeButton}>X</Text>
+                    </TouchableOpacity>
+                    <View style={styles.cardHeader}>
+                        <TouchableOpacity style={styles.arrowContainer}>
+                            <Text style={styles.arrow}>{"\<"}</Text>
+                        </TouchableOpacity>
+                        <Image 
+                            style={{width: 75, height: 100, margin: 20}}
+                            source={{uri: "https://i.harperapps.com/covers/9780061244186/y648.jpg"}}/>
+                        <View style={styles.bookInfo}>
+                            <Text style={styles.title}>{this.props.title}</Text>
+                            <Text>{this.props.author}</Text>
+                        </View>
+                        <TouchableOpacity style={styles.leftArrow}>
+                            <Text style={styles.arrow}>{"\>"}</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.wordContainer}>
+                        <TouchableOpacity>
+                            <Text style={styles.soundButton}>Sound Button</Text>
+                        </TouchableOpacity>
+                        <View>
+                            <Text style={styles.word}>{word}</Text>
+                        </View>
+                        <View>
+                            <Text>{type} | {punctuation} </Text>
+                        </View>
+                    </View>
+                    <View style={styles.definition}>
+                        <Text>Definition: {definition}</Text>
+                        <Text>Example: {example}</Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 1,
+        borderWidth: 0.3,
         borderColor: "black",
         margin: 10,
         borderRadius: 5
     },
     cardContainer: {
-        borderWidth: 1,
-        borderColor: "black"
+        height: 680
+    },
+    horizontalContainer: {
     },
     cardHeader: {
         flexDirection: "row",
@@ -86,6 +122,13 @@ const styles = StyleSheet.create({
     arrow: {
         fontSize: 25
     },
+    leftArrow: {
+        flexDirection: "row",
+        justifyContent: "center",
+        paddingLeft: 16,
+        alignItems: "center",
+        marginLeft: 65
+    },
     word: {
         padding: 10,
         fontSize: 30,
@@ -100,7 +143,20 @@ const styles = StyleSheet.create({
     },
     definition: {
         paddingTop: 30,
-        padding: 10
+        padding: 15
+    },
+    closeButtonContainer: {
+        alignItems: "flex-end"
+    },
+    closeButton: {
+        fontSize: 20,
+        fontWeight: "bold",
+        paddingRight: 15,
+        paddingTop: 15
+    },
+    title: {
+        fontSize: 15,
+        fontWeight: "700"
     }
 })
 
