@@ -60,7 +60,8 @@ class WordCard extends Component {
     // }
 
   render() {
-        const { word, punctuation, definition, type, example } = this.props.wordList
+      console.log("SELECTED WORD: ", this.props.word)
+        const { word, punctuation, definition, type, example } = this.props.word
         return (
             <View style={styles.container}>
                 <View style={styles.cardContainer}>

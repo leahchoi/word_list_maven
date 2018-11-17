@@ -25,7 +25,8 @@ type Props = {};
 export default class App extends Component<Props> {
   state = {
       book: [],
-      selectedWord: null
+      selectedWord: null,
+      modalVisible: null
   };
 
   componentDidMount = () => {
@@ -41,26 +42,27 @@ export default class App extends Component<Props> {
       })
   }
  
-  onSelectHandler = () => {
-      if(!this.state.selectedWord) {
-        this.setState({
-          selectedWord: "Something"
-        }); 
-      } else {
-        this.setState({
-          selectedWord: null
-        }); 
-      }
+  onSelectHandler = (state) => {
+    if (!this.state.modalVisible) {
+      this.setState({
+        selectedWord: state,
+        modalVisible: true
+      })
+    } else {
+      this.setState({
+        selectedWord: null,
+        modalVisible: null
+      })
+    }
   }
 
   render() {
-    console.log("RESP: ", this.state.book)
     return (
       <View>
         <View style={styles.container}>
           <WordListTitle />
         </View>
-        <WordList book={this.state.book}/>
+        <WordList book={this.state.book} onSelectHandler={this.onSelectHandler}/>
         <TouchableOpacity 
           onPress={() => this.onSelectHandler()}>
           <Text>Open Modal</Text>
