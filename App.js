@@ -7,6 +7,7 @@
  */
 
 import React, {Component} from 'react';
+import WordListTitle from './src/components/WordListTitle';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import WordModal from './src/components/wordModal';
 
@@ -18,11 +19,12 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+
 export default class App extends Component<Props> {
-  state = {
+   state = {
       selectedWord: null
   };
-
+ 
   onSelectHandler = () => {
       if(!this.state.selectedWord) {
         this.setState({
@@ -39,9 +41,8 @@ export default class App extends Component<Props> {
     return (
       <View>
         <View style={styles.container}>
-          <Text>Word List</Text>
+          <WordListTitle />
         </View>
-        <Text>List</Text>
         <TouchableOpacity 
           onPress={() => this.onSelectHandler()}>
           <Text>Open Modal</Text>
