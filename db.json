@@ -9,7 +9,7 @@
                     "id": 0,
                     "word": "abominably",
                     "punctuation": "a·bom·i·na·bly",
-                    "type": "adverb",
+                    "type": "(adverb)",
                     "definition": "very unpleasantly or unfairly",
                     "example": "he had treated her abominably"
                 },
@@ -17,7 +17,7 @@
                     "id": 1,
                     "word": "abominably1",
                     "punctuation": "a·bom·i·na·bly",
-                    "type": "adverb",
+                    "type": "(adverb)",
                     "definition": "very unpleasantly or unfairly",
                     "example": "he had treated her abominably"
                 },
@@ -25,7 +25,7 @@
                     "id": 2,
                     "word": "abominably2",
                     "punctuation": "a·bom·i·na·bly",
-                    "type": "adverb",
+                    "type": "(adverb)",
                     "definition": "very unpleasantly or unfairly",
                     "example": "he had treated her abominably"
                 },
@@ -33,7 +33,7 @@
                     "id": 3,
                     "word": "abominably3",
                     "punctuation": "a·bom·i·na·bly",
-                    "type": "adverb",
+                    "type": "(adverb)",
                     "definition": "very unpleasantly or unfairly",
                     "example": "he had treated her abominably"
                 },
@@ -41,7 +41,7 @@
                     "id": 4,
                     "word": "abominably4",
                     "punctuation": "a·bom·i·na·bly",
-                    "type": "adverb",
+                    "type": "(adverb)",
                     "definition": "very unpleasantly or unfairly",
                     "example": "he had treated her abominably"
                 }
@@ -56,7 +56,7 @@
                     "id": 0,
                     "word": "careen",
                     "punctuation": "ca·reen",
-                    "type": "verb",
+                    "type": "(verb)",
                     "definition": "move swiftly and in an uncontrolled way in a specified direction",
                     "example": "The door slammed to because it was on the careened side; and in a half second I was in the boat, and Jim come tumbling after me."
                 },
@@ -64,7 +64,7 @@
                     "id": 1,
                     "word": "careen",
                     "punctuation": "ca·reen",
-                    "type": "verb",
+                    "type": "(verb)",
                     "definition": "move swiftly and in an uncontrolled way in a specified direction",
                     "example": "The door slammed to because it was on the careened side; and in a half second I was in the boat, and Jim come tumbling after me."
                 },
@@ -72,7 +72,7 @@
                     "id": 2,
                     "word": "careen",
                     "punctuation": "ca·reen",
-                    "type": "verb",
+                    "type": "(verb)",
                     "definition": "move swiftly and in an uncontrolled way in a specified direction",
                     "example": "The door slammed to because it was on the careened side; and in a half second I was in the boat, and Jim come tumbling after me."
                 },
@@ -80,7 +80,7 @@
                     "id": 3,
                     "word": "careen",
                     "punctuation": "ca·reen",
-                    "type": "verb",
+                    "type": "(verb)",
                     "definition": "move swiftly and in an uncontrolled way in a specified direction",
                     "example": "The door slammed to because it was on the careened side; and in a half second I was in the boat, and Jim come tumbling after me."
                 }
@@ -95,7 +95,7 @@
                     "id": 0,
                     "word": "tawny",
                     "punctuation": "taw·ny",
-                    "type": "adjective",
+                    "type": "(adjective)",
                     "definition": "having the color of tanned leather",
                     "example": "None of them noticed a large, tawny owl flutter past the window."
                 },
@@ -103,7 +103,7 @@
                     "id": 1,
                     "word": "tawny",
                     "punctuation": "taw·ny",
-                    "type": "noun",
+                    "type": "(noun)",
                     "definition": "an orange-brown or yellowish-brown color",
                     "example": "pine needles turning from tawny to amber"
                 },
@@ -111,7 +111,7 @@
                     "id": 2,
                     "word": "chortle",
                     "punctuation": "chor·tle",
-                    "type": "verb",
+                    "type": "(verb)",
                     "definition": "laugh quietly or with restraint",
                     "example": "/“Little tyke,/” chortled Mr. Dursley as he left the house."
                 },
@@ -119,7 +119,7 @@
                     "id": 3,
                     "word": "chortle",
                     "punctuation": "chor·tle",
-                    "type": "noun",
+                    "type": "(noun)",
                     "definition": "a breathy, gleeful laugh.",
                     "example": "Thomas gave a chortle"
                 }
