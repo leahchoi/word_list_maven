@@ -13,19 +13,23 @@ class WordModal extends Component {
     }
     
     getItemData = () => {
-        axios.get("http://localhost:3000/books")
-            .then(resp => {
-                console.log("resp", resp);
-                this.setState({
-                    book: resp.data
-                })
-            })
-            .catch(err => console.log(err))
+
+        this.setState({
+            book: this.props.selectedWord
+        })
+        // axios.get("http://localhost:3000/books")
+        //     .then(resp => {
+        //         console.log("resp", resp);
+        //         this.setState({
+        //             book: resp.data
+        //         })
+        //     })
+        //     .catch(err => console.log(err))
     }
 
     renderWordInformation = () => {
-        if (this.state.book) {
-            let book = this.state.book[0]
+        // if (this.state.book) {
+        //     let book = this.state.book[0]
             // render list of words in list
             // console.log("Books: ", books)
             // const map = books.map((item) => {
@@ -39,14 +43,13 @@ class WordModal extends Component {
             return (
                 <View>
                     <WordCard 
-                        wordList={book.word_list[0]}
-                        title={book.title}
-                        author={book.author}
+                        word={this.props.selectedWord}
+                        title={"The Odyssey"}
+                        author={"Homer"}
                         closeModal={this.props.closeModal}/>
                 </View>
             )
         }
-    }
 
     render() {
         console.log("Book State: ", this.state.book)

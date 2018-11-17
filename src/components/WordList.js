@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
-
+ 
 
 export default class WordList extends Component {
 
@@ -11,7 +11,7 @@ export default class WordList extends Component {
         <FlatList 
             data={this.props.book.word_list} 
             renderItem={ ({item}) =>  
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
                     <Text>{item.word}</Text> 
                 </TouchableOpacity>
             }/>
