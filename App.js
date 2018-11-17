@@ -39,7 +39,7 @@ export default class App extends Component<Props> {
     return (
       <View>
         <View style={styles.container}>
-          <Text>Header</Text>
+          <Text>Word List</Text>
         </View>
         <Text>List</Text>
         <TouchableOpacity 
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'cyan',
   }
 });

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Modal, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Modal, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import axios from 'axios';
+import WordCard from './wordCard';
 
 class WordModal extends Component {
     state = {
-        book: {}
+        book: null
     }
 
     componentDidMount () {
@@ -16,7 +17,7 @@ class WordModal extends Component {
             .then(resp => {
                 console.log("resp", resp);
                 this.setState({
-                    book: resp.data[0]
+                    book: resp.data
                 })
             })
             .catch(err => console.log(err))
@@ -24,10 +25,19 @@ class WordModal extends Component {
 
     renderWordInformation = () => {
         if (this.state.book) {
+            let books = this.state.book
+            console.log("Books: ", books)
+            const map = books.map((item) => {
+                return (
+                    <WordCard 
+                        book={item}
+                        title={item.title}
+                        author={item.author}/>
+                )
+            })
             return (
                 <View>
-                    <Text>{this.state.book.title}</Text>
-                    <Text>{this.state.book.author}</Text>
+                    {map}
                 </View>
             )
         }
@@ -37,7 +47,6 @@ class WordModal extends Component {
         console.log("Book State: ", this.state.book)
         return (
             <Modal
-                animationType="slide"
                 transparent={false}
                 visible={this.props.selectedWord !== null ? true : false}
                 onRequestClose={() => {
@@ -46,11 +55,12 @@ class WordModal extends Component {
             >
             <View
                 style={styles.modalContainer}>
-                {this.renderWordInformation()}
-                <TouchableOpacity onPress={() => this.props.closeModal()}>
-                    <Text>Close Modal</Text>
-                </TouchableOpacity>
+                <Text>Word Cards</Text>
             </View>
+            {this.renderWordInformation()}
+            <TouchableOpacity onPress={() => this.props.closeModal()}>
+                <Text>Close Modal</Text>
+            </TouchableOpacity>
             </Modal>
         )
     }
@@ -58,7 +68,11 @@ class WordModal extends Component {
 
 const styles = StyleSheet.create({
     modalContainer: {
-        paddingTop: 50
+        paddingTop: 50,
+        paddingBottom: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'cyan'
     }
 })
 
