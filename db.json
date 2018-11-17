@@ -1,6 +1,6 @@
 {
-  "books": [
-    {
+    "books": [
+        {
             "title": "The Odyssey",
             "author": "Homer",
             "id": 0,
@@ -125,5 +125,5 @@
                 }
             ]
         }
-      ]
-    }
+    ]
+}

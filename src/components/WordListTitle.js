@@ -22,26 +22,33 @@ export default class WordListTitle extends Component {
 
     renderBookTitle = () => {
         if (this.state.bookList) {
-            const book = this.state.bookList.map((book) => {
-                return (
-                    <Text>
-                        {book.title}
-                    </Text>
-                )
-            } )
+            // const book = this.state.bookList.map((book) => {
+            //     return (
+            //         <Text>
+            //             {book.title}
+            //         </Text>
+            //     )
+            // } )
+            // return (
+            //     <View style= {Styles.listTitle}>
+            //         {book}
+            //     </View>
+            // )
+            const book = this.state.bookList[0].title
             return (
                 <View>
-                    {book}
+                    <Text>{book}</Text>
                 </View>
             )
         }
     }
 
   render() {
+      console.log('state in getbook title:', this.state.bookList)
 
     return (
       <View>
-          {this.renderBookTitle()}
+            {this.renderBookTitle()}
       </View>
     );
   }
@@ -49,8 +56,7 @@ export default class WordListTitle extends Component {
 
 const Styles = StyleSheet.create({
     listTitle: {
-        width: 60,
         height: 30,
-        justifyContent: 'center'
+        justifyContent: 'center',
     }
 })
