@@ -63,10 +63,6 @@ export default class App extends Component<Props> {
           <WordListTitle />
         </View>
         <WordList book={this.state.book} onSelectHandler={this.onSelectHandler}/>
-        <TouchableOpacity 
-          onPress={() => this.onSelectHandler()}>
-          <Text>Open Modal</Text>
-        </TouchableOpacity>
         <WordModal 
           selectedWord={this.state.selectedWord}
           closeModal={this.onSelectHandler}/>
