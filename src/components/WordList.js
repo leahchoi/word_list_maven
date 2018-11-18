@@ -37,14 +37,11 @@ const Styles = StyleSheet.create({
   },
   wordlistInfo:{
     alignItems: 'center',
-    // justifyContent: 'center',
-    // width: 360,
     flexDirection: 'row',
     height: 70,
     backgroundColor: '#333'
   },
   totalWords: {
-    // justifyContent: 'flex-start',
     alignItems:'center',
     fontSize: 35,
     color: '#e67e22',
