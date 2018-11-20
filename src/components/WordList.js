@@ -1,11 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
- 
+import { connect } from 'react-redux';
+import WordListItem from './WordListItem'
 
-export default class WordList extends Component {
-
+class WordList extends Component {
+  renderItem(books) {
+    // console.log('insdie of renderitme')
+  }
   render() {
-    console.log("inside word list", this.props);
+    console.log('wordlist render:', this.props)
     return (
       <View>
         <View style={Styles.wordlistInfo}>
@@ -14,20 +17,24 @@ export default class WordList extends Component {
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
-        <FlatList 
-            data={this.props.book.word_list} 
-            renderItem={ ({item}) =>  
-                <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
-                    <Text style={Styles.word}>{item.word}</Text> 
-                </TouchableOpacity>
-            }/>
+        <FlatList
+          data={this.props.bookList}
+          renderItem={this.renderItem}
+          keyExtractor={(books) => books.id}
+        // data={this.props.bookList.word_list} 
+        // renderItem={ ({item}) =>  
+        //     <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
+        //         <Text style={Styles.word}>{item.word}</Text> 
+        //     </TouchableOpacity>
+        // }
+        />
       </View>
     )
   }
 }
 
 const Styles = StyleSheet.create({
-  word:{
+  word: {
     padding: 18,
     fontSize: 28,
     fontWeight: 'bold',
@@ -35,14 +42,14 @@ const Styles = StyleSheet.create({
     borderWidth: 0.8,
     textAlign: 'center'
   },
-  wordlistInfo:{
+  wordlistInfo: {
     alignItems: 'center',
     flexDirection: 'row',
     height: 70,
     backgroundColor: '#333'
   },
   totalWords: {
-    alignItems:'center',
+    alignItems: 'center',
     fontSize: 35,
     color: '#e67e22',
     paddingRight: 9,
@@ -55,3 +62,10 @@ const Styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
+
+const mapStateToProps = state => {
+  return { bookList: state.bookList }
+
+};
+
+export default connect(mapStateToProps)(WordList);

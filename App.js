@@ -6,28 +6,27 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import WordListTitle from './src/components/WordListTitle';
-import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import WordModal from './src/components/wordModal';
 import WordList from './src/components/WordList';
-import axios from 'axios'
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import axios from 'axios';
+import reducers from './src/reducers/index';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
 
 type Props = {};
 
 export default class App extends Component<Props> {
   state = {
-      book: [],
-      selectedWord: null,
-      modalVisible: null
+    book: [],
+    selectedWord: null,
+    modalVisible: null
   };
+
+// const store= createStore(reducers, state, enhancer)
+
 
   componentDidMount = () => {
     this.getBookList();
@@ -41,7 +40,7 @@ export default class App extends Component<Props> {
         })
       })
   }
- 
+
   onSelectHandler = (state) => {
     if (!this.state.modalVisible) {
       this.setState({
@@ -56,17 +55,21 @@ export default class App extends Component<Props> {
     }
   }
 
+
   render() {
     return (
-      <View>
-        <View style={styles.container}>
-          <WordListTitle />
+      <Provider store={createStore(reducers)}>
+        <View>
+          <View style={styles.container}>
+            <WordListTitle />
+          </View>
+          <WordList />
+          {/* book={this.state.book} onSelectHandler={this.onSelectHandler} */}
+          <WordModal
+            selectedWord={this.state.selectedWord}
+            closeModal={this.onSelectHandler} />
         </View>
-        <WordList book={this.state.book} onSelectHandler={this.onSelectHandler}/>
-        <WordModal 
-          selectedWord={this.state.selectedWord}
-          closeModal={this.onSelectHandler}/>
-      </View>
+      </Provider>
     );
   }
 }
