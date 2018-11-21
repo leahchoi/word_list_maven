@@ -3,12 +3,15 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class WordListItem extends Component {
     onSelectHandler = (state) => {
+    if (!this.state.modalVisible) {
+    } else {
 
+    }
 }
     render() {
-        console.log('inside of wordlist item', this.props.book)
+        console.log('inside of wordlist item', this.props.id)
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
                 <Text style={Styles.word}>{this.props.word.word}</Text>
             </TouchableOpacity>
     )
