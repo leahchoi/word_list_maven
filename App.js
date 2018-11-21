@@ -41,19 +41,19 @@ export default class App extends Component<Props> {
   //     })
   // }
 
-  onSelectHandler = (state) => {
-    if (!this.state.modalVisible) {
-      this.setState({
-        selectedWord: state,
-        modalVisible: true
-      })
-    } else {
-      this.setState({
-        selectedWord: null,
-        modalVisible: null
-      })
-    }
-  }
+  // onSelectHandler = (state) => {
+  //   if (!this.state.modalVisible) {
+  //     this.setState({
+  //       selectedWord: state,
+  //       modalVisible: true
+  //     })
+  //   } else {
+  //     this.setState({
+  //       selectedWord: null,
+  //       modalVisible: null
+  //     })
+  //   }
+  // }
 
 
   render() {

@@ -4,14 +4,9 @@ import { connect } from 'react-redux';
 import WordListItem from './WordListItem'
 
 class WordList extends Component {
-  constructor(props){
-    super(props);
-    // this.renderItem=this.renderItem.bind(this);
-  }
-  renderItem(book) {
+  renderItem(word) {
     console.log('inside of render Item')
-    debugger;
-    return <WordListItem book={book}/>;
+    return <WordListItem word={word}/>;
   }
   render() {
     console.log('wordlist render:', this.props)
@@ -23,10 +18,11 @@ class WordList extends Component {
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
+        {/* <Text>{JSON.stringify(this.props.bookList)}</Text> */}
         <FlatList
-          data={this.props.bookList}
+          data={this.props.bookList.books[0].word_list}
           renderItem={({item})=>this.renderItem(item)}
-          // renderItem={()=> <Text>Hello!</Text>}
+          // renderItem={(()=> <Text>Hello!</Text>)}
           keyExtractor={(book) => book.id}
         // data={this.props.bookList.word_list} 
         // renderItem={ ({item}) =>  
