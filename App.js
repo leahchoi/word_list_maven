@@ -28,18 +28,18 @@ export default class App extends Component<Props> {
 // const store= createStore(reducers, state, enhancer)
 
 
-  componentDidMount = () => {
-    this.getBookList();
-  }
+  // componentDidMount = () => {
+  //   this.getBookList();
+  // }
 
-  getBookList = () => {
-    axios.get("http://localhost:3000/books")
-      .then(resp => {
-        this.setState({
-          book: resp.data[0]
-        })
-      })
-  }
+  // getBookList = () => {
+  //   axios.get("http://localhost:3000/books")
+  //     .then(resp => {
+  //       this.setState({
+  //         book: resp.data[0]
+  //       })
+  //     })
+  // }
 
   onSelectHandler = (state) => {
     if (!this.state.modalVisible) {

@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import WordListItem from './WordListItem'
 
 class WordList extends Component {
-  renderItem(books) {
-    // console.log('insdie of renderitme')
+  constructor(props){
+    super(props);
+    // this.renderItem=this.renderItem.bind(this);
+  }
+  renderItem(book) {
+    console.log('inside of render Item')
+    debugger;
+    return <WordListItem book={book}/>;
   }
   render() {
     console.log('wordlist render:', this.props)
@@ -19,12 +25,13 @@ class WordList extends Component {
         </View>
         <FlatList
           data={this.props.bookList}
-          renderItem={this.renderItem}
-          keyExtractor={(books) => books.id}
+          renderItem={({item})=>this.renderItem(item)}
+          // renderItem={()=> <Text>Hello!</Text>}
+          keyExtractor={(book) => book.id}
         // data={this.props.bookList.word_list} 
         // renderItem={ ({item}) =>  
         //     <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
-        //         <Text style={Styles.word}>{item.word}</Text> 
+        //         <Text style={Styles.word}>Hi</Text> 
         //     </TouchableOpacity>
         // }
         />
@@ -65,7 +72,6 @@ const Styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return { bookList: state.bookList }
-
 };
 
 export default connect(mapStateToProps)(WordList);
