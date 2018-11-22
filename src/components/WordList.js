@@ -1,11 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
- 
+import { connect } from 'react-redux';
+import WordListItem from './WordListItem'
 
-export default class WordList extends Component {
-
+class WordList extends Component {
+  renderItem(word) {
+    console.log('inside of render Item')
+    return <WordListItem word={word}/>;
+  }
   render() {
-    console.log("inside word list", this.props);
+    console.log('wordlist render:', this.props)
     return (
       <View>
         <View style={Styles.wordlistInfo}>
@@ -14,20 +18,26 @@ export default class WordList extends Component {
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
-        <FlatList 
-            data={this.props.book.word_list} 
-            renderItem={ ({item}) =>  
-                <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
-                    <Text style={Styles.word}>{item.word}</Text> 
-                </TouchableOpacity>
-            }/>
+        {/* <Text>{JSON.stringify(this.props.bookList)}</Text> */}
+        <FlatList
+          data={this.props.bookList.books[0].word_list}
+          renderItem={({item})=>this.renderItem(item)}
+          // renderItem={(()=> <Text>Hello!</Text>)}
+          keyExtractor={(book) => book.id}
+        // data={this.props.bookList.word_list} 
+        // renderItem={ ({item}) =>  
+        //     <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
+        //         <Text style={Styles.word}>Hi</Text> 
+        //     </TouchableOpacity>
+        // }
+        />
       </View>
     )
   }
 }
 
 const Styles = StyleSheet.create({
-  word:{
+  word: {
     padding: 18,
     fontSize: 28,
     fontWeight: 'bold',
@@ -35,14 +45,14 @@ const Styles = StyleSheet.create({
     borderWidth: 0.8,
     textAlign: 'center'
   },
-  wordlistInfo:{
+  wordlistInfo: {
     alignItems: 'center',
     flexDirection: 'row',
     height: 70,
     backgroundColor: '#333'
   },
   totalWords: {
-    alignItems:'center',
+    alignItems: 'center',
     fontSize: 35,
     color: '#e67e22',
     paddingRight: 9,
@@ -55,3 +65,9 @@ const Styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
+
+const mapStateToProps = state => {
+  return { bookList: state.bookList }
+};
+
+export default connect(mapStateToProps)(WordList);
