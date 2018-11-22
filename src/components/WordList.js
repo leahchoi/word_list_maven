@@ -3,9 +3,17 @@ import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 're
  
 
 export default class WordList extends Component {
+  state = {
+    0: null,
+    1: null, 
+    2: null, 
+    3: null, 
+    4: null
+  }
 
   render() {
     console.log("inside word list", this.props);
+    console.log('Completed List: ', this.props.selectedWordComplete)
     return (
       <View>
         <View style={Styles.wordlistInfo}>
@@ -14,11 +22,13 @@ export default class WordList extends Component {
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
-        <FlatList 
+        <FlatList
             data={this.props.book.word_list} 
             renderItem={ ({item}) =>  
-                <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
-                    <Text style={Styles.word}>{item.word}</Text> 
+                <TouchableOpacity 
+                    style={Styles.wordDisplay}
+                    onPress={() => this.props.onSelectHandler(item)}>
+                    <Text style={Styles.word}>{item.word}</Text>
                 </TouchableOpacity>
             }/>
       </View>

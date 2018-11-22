@@ -26,7 +26,8 @@ export default class App extends Component<Props> {
   state = {
       book: [],
       selectedWord: null,
-      modalVisible: null
+      modalVisible: null,
+      selectedWordComplete: false
   };
 
   componentDidMount = () => {
@@ -56,16 +57,26 @@ export default class App extends Component<Props> {
     }
   }
 
+  toggleComplete = () => {
+    this.setState({
+      selectedWordComplete: !this.state.selectedWordComplete
+    })
+  }
+
   render() {
     return (
       <View>
         <View style={styles.container}>
           <WordListTitle />
         </View>
-        <WordList book={this.state.book} onSelectHandler={this.onSelectHandler}/>
+        <WordList 
+          book={this.state.book} 
+          onSelectHandler={this.onSelectHandler} 
+          selectedWordComplete={this.state.selectedWordComplete}/>
         <WordModal 
           selectedWord={this.state.selectedWord}
-          closeModal={this.onSelectHandler}/>
+          closeModal={this.onSelectHandler}
+          onComplete={this.toggleComplete}/>
       </View>
     );
   }

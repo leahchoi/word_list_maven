@@ -37,7 +37,7 @@ export default class WordListTitle extends Component {
             const book = this.state.bookList[0].title
             return (
                 <View>
-                    <Text>{book}</Text>
+                    <Text style={Styles.title}>{book}</Text>
                 </View>
             )
         }
@@ -58,5 +58,8 @@ const Styles = StyleSheet.create({
     listTitle: {
         height: 30,
         justifyContent: 'center',
+    },
+    title: {
+        fontWeight: "bold"
     }
 })

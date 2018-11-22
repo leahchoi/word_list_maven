@@ -46,7 +46,8 @@ class WordModal extends Component {
                         word={this.props.selectedWord}
                         title={"The Odyssey"}
                         author={"Homer"}
-                        closeModal={this.props.closeModal}/>
+                        closeModal={this.props.closeModal}
+                        onComplete={this.props.onComplete}/>
                 </View>
             )
         }
@@ -63,7 +64,7 @@ class WordModal extends Component {
             >
             <View
                 style={styles.modalContainer}>
-                <Text>Word Cards</Text>
+                <Text style={styles.header}>Word Cards</Text>
             </View>
             {this.renderWordInformation()}
             </Modal>
@@ -78,6 +79,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#00ced1'
+    },
+    header: {
+        fontWeight: "bold"
     }
 })
 
