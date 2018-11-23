@@ -12,6 +12,8 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import WordModal from './src/components/wordModal';
 import WordList from './src/components/WordList';
 import axios from 'axios'
+import Carousel from './src/components/carousel';
+import CarouselModal from './src/components/carouselModal';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -27,7 +29,8 @@ export default class App extends Component<Props> {
       book: [],
       selectedWord: null,
       modalVisible: null,
-      selectedWordComplete: false
+      selectedWordComplete: false,
+      carouselModalVisible: false
   };
 
   componentDidMount = () => {
@@ -63,6 +66,12 @@ export default class App extends Component<Props> {
     })
   }
 
+  toggleModalView = () => {
+    this.setState({
+      carouselModalVisible: !this.state.carouselModalVisible
+    })
+  }
+
   render() {
     return (
       <View>
@@ -77,6 +86,15 @@ export default class App extends Component<Props> {
           selectedWord={this.state.selectedWord}
           closeModal={this.onSelectHandler}
           onComplete={this.toggleComplete}/>
+        <TouchableOpacity
+          onPress={() => this.toggleModalView()}>
+          <Text>Modal Open</Text>
+        </TouchableOpacity>
+        <CarouselModal 
+          carouselModalVisible={this.state.carouselModalVisible} 
+          closeModal={this.onSelectHandler}
+          onComplete={this.toggleComplete}
+          book={this.state.book}/>
       </View>
     );
   }
