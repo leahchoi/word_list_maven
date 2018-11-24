@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import WordListItem from './WordListItem'
 
 class WordList extends Component {
+  //helper function to append the list of words component
   renderItem(word) {
     console.log('inside of render Item')
     return <WordListItem word={word}/>;
@@ -12,24 +13,18 @@ class WordList extends Component {
     console.log('wordlist render:', this.props)
     return (
       <View>
+        {/* total words header */}
         <View style={Styles.wordlistInfo}>
           <Text style={Styles.totalWords}>115</Text>
           <Text style={Styles.text}>words saved</Text>
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
-        {/* <Text>{JSON.stringify(this.props.bookList)}</Text> */}
+        {/* looping through each others within the list */}
         <FlatList
           data={this.props.bookList.books[0].word_list}
           renderItem={({item})=>this.renderItem(item)}
-          // renderItem={(()=> <Text>Hello!</Text>)}
           keyExtractor={(book) => book.id}
-        // data={this.props.bookList.word_list} 
-        // renderItem={ ({item}) =>  
-        //     <TouchableOpacity onPress={() => this.props.onSelectHandler(item)}>
-        //         <Text style={Styles.word}>Hi</Text> 
-        //     </TouchableOpacity>
-        // }
         />
       </View>
     )
@@ -67,7 +62,9 @@ const Styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
+  //updating state with bookList keyword&value
   return { bookList: state.bookList }
 };
 
+//connecting redux & WordList component
 export default connect(mapStateToProps)(WordList);
