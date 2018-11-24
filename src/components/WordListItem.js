@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import WordModal from './wordModal'
 
 class WordListItem extends Component {
+    // helper function to append the wordModal onto the DOM
     renderModal() {
         const { openModal } = this.props;
         if (openModal) {
@@ -18,10 +19,12 @@ class WordListItem extends Component {
         const { id, word } = this.props.word;
         console.log('inside of wordlist item', this.props)
         return (
+            // on click, calls the action openModalonClick by passing on the word id
             <TouchableOpacity onPress={() => this.props.openModalonClick(id)}>
                 <View>
                     <Text style={Styles.word}>{word}</Text>
                 </View>
+            {/* calls the renderModal (helper function) to display/not display the modal */}
                 {this.renderModal()}
 
             </TouchableOpacity>
@@ -41,7 +44,9 @@ const Styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state, ownProps) => {
+    // checks to see if openModal is 'true' or 'false' 
     const openModal = state.selectedWordId === ownProps.word.id
+    // adds the keys & values below to state
     return { openModal: openModal,
         selectedWord: state.openModalonClick
     }
