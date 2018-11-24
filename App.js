@@ -65,9 +65,9 @@ export default class App extends Component<Props> {
           </View>
           <WordList />
           {/* book={this.state.book} onSelectHandler={this.onSelectHandler} */}
-          <WordModal
+          {/* <WordModal
             selectedWord={this.state.selectedWord}
-            closeModal={this.onSelectHandler} />
+            closeModal={this.onSelectHandler} /> */}
         </View>
       </Provider>
     );
@@ -76,6 +76,7 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingTop: 50,
     paddingBottom: 20,
     justifyContent: 'center',
