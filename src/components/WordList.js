@@ -1,27 +1,27 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
- 
+import { connect } from 'react-redux';
 
-export default class WordList extends Component {
+class WordList extends Component {
   state = {
-    0: null,
-    1: null, 
-    2: null, 
-    3: null, 
-    4: null
   }
 
-  render() {
-    console.log("inside word list", this.props);
-    console.log('Completed List: ', this.props.selectedWordComplete)
+  renderCompletionStats() {
+    const numberOfWords = this.props.book.word_list ? this.props.book.word_list.length : 0;
     return (
-      <View>
         <View style={Styles.wordlistInfo}>
-          <Text style={Styles.totalWords}>115</Text>
+          <Text style={Styles.totalWords}>{numberOfWords}</Text>
           <Text style={Styles.text}>words saved</Text>
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
+    )
+  }
+
+  render() {
+    return (
+      <View>
+        {this.renderCompletionStats()}
         <FlatList
             data={this.props.book.word_list} 
             renderItem={ ({item}) =>  
@@ -65,3 +65,11 @@ const Styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
+
+function mapStateToProps(state) {
+  return {
+    book: state.book.book
+  }
+}
+
+export default connect(mapStateToProps)(WordList);

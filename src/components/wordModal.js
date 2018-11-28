@@ -1,45 +1,15 @@
 import React, { Component } from 'react'
 import { Modal, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import axios from 'axios';
 import WordCard from './wordCard';
+import { connect } from 'react-redux';
 
 class WordModal extends Component {
-    state = {
-        book: null
-    }
 
     componentDidMount () {
-        this.getItemData();
-    }
-    
-    getItemData = () => {
-
-        this.setState({
-            book: this.props.selectedWord
-        })
-        // axios.get("http://localhost:3000/books")
-        //     .then(resp => {
-        //         console.log("resp", resp);
-        //         this.setState({
-        //             book: resp.data
-        //         })
-        //     })
-        //     .catch(err => console.log(err))
     }
 
     renderWordInformation = () => {
-        // if (this.state.book) {
-        //     let book = this.state.book[0]
-            // render list of words in list
-            // console.log("Books: ", books)
-            // const map = books.map((item) => {
-            //     return (
-            //         <WordCard 
-            //             wordList={item.word_list}
-            //             title={item.title}
-            //             author={item.author}/>
-            //     )
-            // })
+        if (this.props.selectedWord) {
             return (
                 <View>
                     <WordCard 
@@ -51,13 +21,13 @@ class WordModal extends Component {
                 </View>
             )
         }
+    }
 
     render() {
-        console.log("Book State: ", this.state.book)
         return (
             <Modal
                 transparent={false}
-                visible={this.props.selectedWord !== null ? true : false}
+                visible={this.props.selectedWord ? true : false}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
                 }}
@@ -85,4 +55,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default WordModal;
+function mapStateToProps(state) {
+    return {
+        selectedWord: state.book.selectedWord
+    }
+}
+
+export default connect(mapStateToProps, {})(WordModal);
