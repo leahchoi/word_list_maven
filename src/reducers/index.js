@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import BookListReducer from './BookListReducer';
-import SelectionReducer from './selectionReducer'
+import bookReducer from './bookReducer';
 
-export default combineReducers({
-    bookList: BookListReducer,
-    selectedWordId: SelectionReducer,
-    openModal: SelectionReducer
-});
+const rootReducer = combineReducers({
+    book: bookReducer
+})
+
+export default rootReducer;

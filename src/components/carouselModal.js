@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Modal, StyleSheet } from 'react-native';
 import Carousel from './carousel';
+import { connect } from 'react-redux';
 
 class CarouselModal extends Component {
     render () {
@@ -34,4 +35,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default CarouselModal;
+function mapStateToProps(state) {
+    return {
+        book: state.book.book
+    }
+}
+
+export default connect(mapStateToProps)(CarouselModal);

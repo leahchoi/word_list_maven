@@ -1,35 +1,28 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
-
 import { connect } from 'react-redux';
 import WordListItem from './WordListItem'
 
 class WordList extends Component {
   state = {
-    0: null,
-    1: null, 
-    2: null, 
-    3: null, 
-    4: null
   }
-  //helper function to append the list of words component
-  renderItem(word) {
-    console.log('inside of render Item')
-    return <WordListItem word={word}/>;
-  }
-  render() {
-    console.log("inside word list", this.props);
-    console.log('Completed List: ', this.props.selectedWordComplete)
-    console.log('wordlist render:', this.props)
+
+  renderCompletionStats() {
+    const numberOfWords = this.props.book.word_list ? this.props.book.word_list.length : 0;
     return (
-      <View>
-        {/* total words header */}
         <View style={Styles.wordlistInfo}>
-          <Text style={Styles.totalWords}>115</Text>
+          <Text style={Styles.totalWords}>{numberOfWords}</Text>
           <Text style={Styles.text}>words saved</Text>
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
+    )
+  }
+
+  render() {
+    return (
+      <View>
+        {this.renderCompletionStats()}
         <FlatList
             data={this.props.book.word_list} 
             renderItem={ ({item}) =>  
@@ -74,10 +67,10 @@ const Styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = state => {
-  //updating state with bookList keyword&value
-  return { bookList: state.bookList }
-};
+function mapStateToProps(state) {
+  return {
+    book: state.book.book
+  }
+}
 
-//connecting redux & WordList component
 export default connect(mapStateToProps)(WordList);
