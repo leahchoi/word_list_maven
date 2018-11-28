@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+
 import { connect } from 'react-redux';
 import WordListItem from './WordListItem'
 
 class WordList extends Component {
+  state = {
+    0: null,
+    1: null, 
+    2: null, 
+    3: null, 
+    4: null
+  }
   //helper function to append the list of words component
   renderItem(word) {
     console.log('inside of render Item')
     return <WordListItem word={word}/>;
   }
   render() {
+    console.log("inside word list", this.props);
+    console.log('Completed List: ', this.props.selectedWordComplete)
     console.log('wordlist render:', this.props)
     return (
       <View>
@@ -20,12 +30,15 @@ class WordList extends Component {
           <Text style={Styles.totalWords}>88</Text>
           <Text style={Styles.text}>mastered</Text>
         </View>
-        {/* looping through each others within the list */}
         <FlatList
-          data={this.props.bookList.books[0].word_list}
-          renderItem={({item})=>this.renderItem(item)}
-          keyExtractor={(book) => book.id}
-        />
+            data={this.props.book.word_list} 
+            renderItem={ ({item}) =>  
+                <TouchableOpacity 
+                    style={Styles.wordDisplay}
+                    onPress={() => this.props.onSelectHandler(item)}>
+                    <Text style={Styles.word}>{item.word}</Text>
+                </TouchableOpacity>
+            }/>
       </View>
     )
   }

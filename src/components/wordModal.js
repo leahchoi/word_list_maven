@@ -45,11 +45,12 @@ class WordModal extends Component {
 
             return (
                 <View>
-                    <WordCard
-                        word={word}
-                        title={title}
-                        author={author}
-                        closeModal={this.props.openModal} />
+                    <WordCard 
+                        word={this.props.selectedWord}
+                        title={"The Odyssey"}
+                        author={"Homer"}
+                        closeModal={this.props.closeModal}
+                        onComplete={this.props.onComplete}/>
                 </View>
             )
     }
@@ -64,11 +65,11 @@ class WordModal extends Component {
                     Alert.alert('Modal has been closed.');
                 }}
             >
-                <View
-                    style={styles.modalContainer}>
-                    <Text>Word Cards</Text>
-                </View>
-                {this.renderWordInformation()}
+            <View
+                style={styles.modalContainer}>
+                <Text style={styles.header}>Word Cards</Text>
+            </View>
+            {this.renderWordInformation()}
             </Modal>
         )
     }
@@ -81,6 +82,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#00ced1'
+    },
+    header: {
+        fontWeight: "bold"
     }
 })
 

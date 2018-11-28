@@ -90,7 +90,7 @@ class WordCard extends Component {
                             <Text style={styles.soundButton}>Sound Button</Text>
                         </TouchableOpacity>
                         <View>
-                            <Text style={styles.word}>{word}</Text>
+                            <Text style={this.state.completed ? styles.wordCompleted : styles.word}>{word}</Text>
                         </View>
                         <View>
                             <Text>{type} | {punctuation} </Text>
@@ -103,7 +103,9 @@ class WordCard extends Component {
                     <View style={styles.cardFooter}>
                         <Text>Quiz Score: 8/10</Text>
                         <Button 
-                            onPress={() => this.onCompleteHandler()}
+                            onPress={() => {
+                                this.props.onComplete();
+                                this.onCompleteHandler()}}
                             style={styles.completeButton}
                             title={this.state.completed ? "Complete" : "Mark as Complete"}> 
                         </Button>
@@ -153,6 +155,12 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 30,
         fontWeight: "bold"
+    },
+    wordCompleted: {
+        padding: 10,
+        fontSize: 30,
+        fontWeight: "bold",
+        color: "green"
     },
     wordContainer: {
         justifyContent: "center",
