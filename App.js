@@ -6,9 +6,9 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import WordListTitle from './src/components/WordListTitle';
-import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import WordModal from './src/components/wordModal';
 import WordList from './src/components/WordList';
 import axios from 'axios'
@@ -22,6 +22,10 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+import reducers from './src/reducers/index';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
+
 type Props = {};
 
 export default class App extends Component<Props> {
@@ -33,32 +37,36 @@ export default class App extends Component<Props> {
       carouselModalVisible: false
   };
 
-  componentDidMount = () => {
-    this.getBookList();
-  }
+// const store= createStore(reducers, state, enhancer)
 
-  getBookList = () => {
-    axios.get("http://localhost:3000/books")
-      .then(resp => {
-        this.setState({
-          book: resp.data[0]
-        })
-      })
-  }
- 
-  onSelectHandler = (state) => {
-    if (!this.state.modalVisible) {
-      this.setState({
-        selectedWord: state,
-        modalVisible: true
-      })
-    } else {
-      this.setState({
-        selectedWord: null,
-        modalVisible: null
-      })
-    }
-  }
+
+  // componentDidMount = () => {
+  //   this.getBookList();
+  // }
+
+  // getBookList = () => {
+  //   axios.get("http://localhost:3000/books")
+  //     .then(resp => {
+  //       this.setState({
+  //         book: resp.data[0]
+  //       })
+  //     })
+  // }
+
+  // onSelectHandler = (state) => {
+  //   if (!this.state.modalVisible) {
+  //     this.setState({
+  //       selectedWord: state,
+  //       modalVisible: true
+  //     })
+  //   } else {
+  //     this.setState({
+  //       selectedWord: null,
+  //       modalVisible: null
+  //     })
+  //   }
+  // }
+
 
   toggleComplete = () => {
     this.setState({
@@ -74,10 +82,15 @@ export default class App extends Component<Props> {
 
   render() {
     return (
-      <View>
-        <View style={styles.container}>
-          <WordListTitle />
-        </View>
+      <Provider store={createStore(reducers)}>
+        <View>
+          <View style={styles.container}>
+            <WordListTitle />
+          </View>
+          {/* book={this.state.book} onSelectHandler={this.onSelectHandler} */}
+          {/* <WordModal
+            selectedWord={this.state.selectedWord}
+            closeModal={this.onSelectHandler} /> */}
         <WordList 
           book={this.state.book} 
           onSelectHandler={this.onSelectHandler} 
@@ -96,12 +109,14 @@ export default class App extends Component<Props> {
           onComplete={this.toggleComplete}
           book={this.state.book}/>
       </View>
+      </Provider>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingTop: 50,
     paddingBottom: 20,
     justifyContent: 'center',

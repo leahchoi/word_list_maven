@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { Modal, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 import WordCard from './wordCard';
 
 class WordModal extends Component {
-    state = {
-        book: null
-    }
+    // state = {
+    //     book: null
+    // }
 
-    componentDidMount () {
+    componentDidMount() {
         this.getItemData();
     }
-    
+
     getItemData = () => {
 
-        this.setState({
-            book: this.props.selectedWord
-        })
+        // this.setState({
+        //     book: this.props.selectedWord
+        // })
         // axios.get("http://localhost:3000/books")
         //     .then(resp => {
         //         console.log("resp", resp);
@@ -30,16 +31,18 @@ class WordModal extends Component {
     renderWordInformation = () => {
         // if (this.state.book) {
         //     let book = this.state.book[0]
-            // render list of words in list
-            // console.log("Books: ", books)
-            // const map = books.map((item) => {
-            //     return (
-            //         <WordCard 
-            //             wordList={item.word_list}
-            //             title={item.title}
-            //             author={item.author}/>
-            //     )
-            // })
+        // render list of words in list
+        // console.log("Books: ", books)
+        // const map = books.map((item) => {
+        //     return (
+        //         <WordCard 
+        //             wordList={item.word_list}
+        //             title={item.title}
+        //             author={item.author}/>
+        //     )
+        // })
+        const { word, title, author} = this.props
+
             return (
                 <View>
                     <WordCard 
@@ -50,14 +53,14 @@ class WordModal extends Component {
                         onComplete={this.props.onComplete}/>
                 </View>
             )
-        }
+    }
 
     render() {
-        console.log("Book State: ", this.state.book)
+        console.log("wordmodal props: ", this.props)
         return (
             <Modal
                 transparent={false}
-                visible={this.props.selectedWord !== null ? true : false}
+                visible={this.props.selectedWordId !== null ? true : false}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
                 }}
@@ -85,4 +88,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default WordModal;
+// const mapStateToProps = state => {
+//     return { openModal: state.openModal }
+// }
+export default connect(null, actions)(WordModal)

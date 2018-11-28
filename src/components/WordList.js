@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
- 
 
-export default class WordList extends Component {
+import { connect } from 'react-redux';
+import WordListItem from './WordListItem'
+
+class WordList extends Component {
   state = {
     0: null,
     1: null, 
@@ -10,12 +12,18 @@ export default class WordList extends Component {
     3: null, 
     4: null
   }
-
+  //helper function to append the list of words component
+  renderItem(word) {
+    console.log('inside of render Item')
+    return <WordListItem word={word}/>;
+  }
   render() {
     console.log("inside word list", this.props);
     console.log('Completed List: ', this.props.selectedWordComplete)
+    console.log('wordlist render:', this.props)
     return (
       <View>
+        {/* total words header */}
         <View style={Styles.wordlistInfo}>
           <Text style={Styles.totalWords}>115</Text>
           <Text style={Styles.text}>words saved</Text>
@@ -37,7 +45,7 @@ export default class WordList extends Component {
 }
 
 const Styles = StyleSheet.create({
-  word:{
+  word: {
     padding: 18,
     fontSize: 28,
     fontWeight: 'bold',
@@ -45,14 +53,14 @@ const Styles = StyleSheet.create({
     borderWidth: 0.8,
     textAlign: 'center'
   },
-  wordlistInfo:{
+  wordlistInfo: {
     alignItems: 'center',
     flexDirection: 'row',
     height: 70,
     backgroundColor: '#333'
   },
   totalWords: {
-    alignItems:'center',
+    alignItems: 'center',
     fontSize: 35,
     color: '#e67e22',
     paddingRight: 9,
@@ -65,3 +73,11 @@ const Styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
+
+const mapStateToProps = state => {
+  //updating state with bookList keyword&value
+  return { bookList: state.bookList }
+};
+
+//connecting redux & WordList component
+export default connect(mapStateToProps)(WordList);
