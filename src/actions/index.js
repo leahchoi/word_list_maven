@@ -19,5 +19,6 @@ export function selectWord( word ) {
             type: types.SELECT_WORD,
             payload: word
         })
+
     }
 }

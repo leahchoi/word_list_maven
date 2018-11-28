@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import WordListItem from './WordListItem'
 
 class WordList extends Component {
   state = {
@@ -37,7 +38,7 @@ class WordList extends Component {
 }
 
 const Styles = StyleSheet.create({
-  word:{
+  word: {
     padding: 18,
     fontSize: 28,
     fontWeight: 'bold',
@@ -45,14 +46,14 @@ const Styles = StyleSheet.create({
     borderWidth: 0.8,
     textAlign: 'center'
   },
-  wordlistInfo:{
+  wordlistInfo: {
     alignItems: 'center',
     flexDirection: 'row',
     height: 70,
     backgroundColor: '#333'
   },
   totalWords: {
-    alignItems:'center',
+    alignItems: 'center',
     fontSize: 35,
     color: '#e67e22',
     paddingRight: 9,

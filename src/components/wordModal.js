@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import WordCard from './wordCard';
 import { connect } from 'react-redux';
+import WordCard from './wordCard';
 
 class WordModal extends Component {
 
