@@ -14,7 +14,6 @@ class WordModal extends Component {
     }
 
     getItemData = () => {
-
         // this.setState({
         //     book: this.props.selectedWord
         // })
@@ -60,7 +59,7 @@ class WordModal extends Component {
         return (
             <Modal
                 transparent={false}
-                visible={this.props.selectedWordId !== null ? true : false}
+                visible={this.props.selectedWord ? true : false}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
                 }}
