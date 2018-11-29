@@ -47,6 +47,7 @@ class WordList extends Component {
         <FlatList
             data={this.props.book.word_list} 
             renderItem={ ({item}) =>  
+              <View style={Styles.wordContainer}>
                 <TouchableOpacity 
                     style={Styles.wordDisplay}
                     // push to location / history
@@ -54,6 +55,7 @@ class WordList extends Component {
                     {/* onPress={() => history.push("/word", {word: item})}> */}
                     <Text style={Styles.word}>{item.word}</Text>
                 </TouchableOpacity>
+              </View>
             }/>
       </View>
     )
@@ -66,8 +68,10 @@ const Styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     fontFamily: 'Cochin',
-    borderWidth: 0.8,
     textAlign: 'center'
+  },
+  wordContainer: {
+    borderBottomWidth: 0.8,
   },
   wordlistInfo: {
     alignItems: 'center',
@@ -92,10 +96,11 @@ const Styles = StyleSheet.create({
   },
   bookHeader: {
     flexDirection: "row",
+    borderBottomWidth: 1.5,
   },
   bookInfo: {
       flexDirection: "column",
-      justifyContent: "center"
+      justifyContent: "center",
   },
   title: {
     fontSize: 15,
