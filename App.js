@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import Home from './src/screens/home'
+import WordCard from './src/components/wordCard';
+import Quiz from './src/components/quiz';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider , connect } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
-import reducers from './src/reducers'
+import reducers from './src/reducers';
+import { NativeRouter, Switch, Route } from 'react-router-native';
 
 type Props = {};
 
@@ -32,7 +35,13 @@ class App extends Component<Props> {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <Home/>
+        <NativeRouter>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/word" component={WordCard}/>
+            <Route exact path="/quiz" component={Quiz}/>
+          </Switch>
+        </NativeRouter>
       </Provider>
     );
   }
