@@ -61,7 +61,7 @@ class Home extends Component {
             onComplete={this.toggleComplete}/>
           <TouchableOpacity
             onPress={() => this.toggleModalView()}>
-            <Text>Modal Open</Text>
+            <Text>Carousel Testing</Text>
           </TouchableOpacity>
           <CarouselModal 
             carouselModalVisible={this.state.carouselModalVisible} 
